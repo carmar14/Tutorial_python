@@ -58,7 +58,7 @@ for vv in archi.readlines():
     # EMG.append(float(vv[8]))
     # MMG.append(float(vv[9]))
 archi.close()
-
+print('Esto es un mensaje diferente: ', len(t))
 plt.plot(t, EMG, 'k')
 plt.xlabel('Tiempo(s)')
 plt.ylabel('Amplitud')
@@ -69,11 +69,13 @@ plt.plot(t, MMG, 'r')
 #--------------lectura de archivos txt--------------
 
 #--------------creacion de archivos txt--------------
-open('new.txt', 'w')
-filtered = lowess(EMG, t, is_sorted=True, frac=0.003, it=0)
+archi = open('new.txt', 'w')
+filtered = lowess(EMG, t, is_sorted=True, frac=0.003, it=0, return_sorted=False)
+print('Esto es un mensaje diferente: ', filtered[2])
 plt.figure()
 plt.plot(t, EMG, 'k', t, filtered, 'r')
-#--------------creacion de archivos txt--------------
-
 plt.show()
+#--------------creacion de archivos txt--------------
+for i in range(len(filtered)):
+    archi.write(str(filtered[i]) + '\n')
 
