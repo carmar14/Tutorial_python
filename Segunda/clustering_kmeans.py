@@ -34,6 +34,7 @@ for name, est in estimators:
     ax.set_position([0, 0, 0.95, 1])
     est.fit(X)
     labels = est.labels_
+    print("etiquetas: ", labels)
 
     ax.scatter(X[:, 3], X[:, 0], X[:, 2], c=labels.astype(float), edgecolor="k")
 
